@@ -71,7 +71,8 @@
               "browserTarget": "first-static-app-angular:build:production"
             },
             "development": {
-              "browserTarget": "first-static-app-angular:build:development"
+              "browserTarget": "first-static-app-angular:build:development",
+              "proxyConfig": "proxy.config.json"
             }
           },
           "defaultConfiguration": "development"

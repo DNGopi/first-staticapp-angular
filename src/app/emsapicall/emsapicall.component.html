@@ -1,0 +1,21 @@
+
+<table class='table'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Location</th>
+        <th>Endpoint Url</th>
+        <th>Container</th>
+        <th>Account</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let location of myLocations;">
+        <td>{{location.id}}</td>
+        <td>{{location.location}}</td>
+        <td>{{location.endPoint}}</td>
+        <td>{{location.container}}</td>
+        <td>{{location.account}}</td>
+      </tr>
+    </tbody>
+  </table>
