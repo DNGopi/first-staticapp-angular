@@ -31,8 +31,8 @@ export class EmsapiserService {
     
       }  
 
-      getEMSFeed(){ 
-       const url = 'https://dn-dev-ems-scus-ap.azure-api.net/DN-DEV-EMSConsole-SCUS-FA/EMS_Console?procId=2049';
+      getEMSFeed(Id: string){ 
+       const url = 'https://dn-dev-ems-scus-ap.azure-api.net/DN-DEV-EMSConsole-SCUS-FA/EMS_Console?procId='+Id;
        let headers = new HttpHeaders();
         headers.append('Ocp-Apim-Subscription-Key','c34a4fb7cfc54f688576560c29eb688c');
        return this.http.get<Locations[]>(url,{headers : {'Ocp-Apim-Subscription-Key':'c34a4fb7cfc54f688576560c29eb688c'}} );

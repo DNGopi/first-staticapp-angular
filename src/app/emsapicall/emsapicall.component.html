@@ -1,3 +1,12 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+<label for="name">Proc Id: </label>
+<input id="txtProcId" type="text" [formControl]="procId">
+<button type="submit">Search</button>
+
+</form>
+
+<br>
 
 <table class='table'>
     <thead>
