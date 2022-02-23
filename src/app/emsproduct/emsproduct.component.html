@@ -1,0 +1,30 @@
+<form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
+
+    <label for="name">User Name: </label>
+    <input id="txtusername" type="text" [formControl]="username">
+    <button type="submit">Search</button>
+    
+    </form>
+    
+    <br>
+    
+    <div style="overflow-x:auto;">
+        <table id="entitlements" ng-init="sortKey='title'">
+          <tr>
+            <th>Part Number </th>
+            <th>Last Update</th>
+            <th>Title </th>
+            <th>Language </th>
+            <th>Products</th>
+            <th>File</th>            
+          </tr>
+          <tr *ngFor="let i of userProducts;">
+            <td>{{i.title}}</td>
+            <td>{{i.publishDate | date:"dd-MMM-yyyy" }}</td>
+            <td><div class = "oflw">{{i.description}}</div></td>
+            <td>{{i.language}}</td>
+            <td><div class = "oflw2">{{i.products}}</div></td>
+            <td><a href='#' (click)="filedownload(i.objectId)">Download</a></td>           
+           </tr>
+        </table>
+      </div>

@@ -29,6 +29,7 @@ onSubmit() {
     this.myLocations = res;
     console.log(res);    
 });
+
   console.log(this.contactForm.value);
 }
 
