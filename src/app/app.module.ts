@@ -6,6 +6,8 @@ import { EmsapicallComponent } from './emsapicall/emsapicall.component';
 import { HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmsproductComponent } from './emsproduct/emsproduct.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { EmsproductComponent } from './emsproduct/emsproduct.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

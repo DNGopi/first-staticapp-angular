@@ -17,6 +17,7 @@ export class EmsapicallComponent implements OnInit {
   constructor(private apiEms: EmsapiserService) { }
 
   myLocations!: Locations[] ;
+ 
 
   ngOnInit(): void {
 
