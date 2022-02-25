@@ -10,6 +10,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './myfliter.pipe';
+import { SAVER, getSaver } from './saver.provider'
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 
 
@@ -26,9 +30,11 @@ import { FilterPipe } from './myfliter.pipe';
     ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    MatProgressBarModule
   ],
-  providers: [],
+  providers: [{provide: SAVER, useFactory: getSaver}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
