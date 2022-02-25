@@ -19,8 +19,14 @@ export class EmsproductComponent implements OnInit {
   frmPortfolio = new FormControl('');
   searchPartNumber  = new FormControl('');
   searchTitle = new FormControl('');
+    searchterm = new FormControl('');
+    term : string ='';
 
-  constructor(private apiEms: EmsapiserService,private fileService: FileService) { }
+  peopleFilter: any;
+    
+  constructor(private apiEms: EmsapiserService,private fileService: FileService) { 
+    //this.peopleFilter = {language: 'English'};
+  }
 
   userProducts!: Product[] ;
   page: number = 1;
@@ -35,12 +41,15 @@ export class EmsproductComponent implements OnInit {
   }
   onSubmit() {
 
+
     this.fetchProducts();
-   
     console.log(this.productsForm.value);
   }
 
   fetchProducts(): void {
+    //this.applymultplefilters(); 
+    //this.peopleFilter = this.createfilter();
+    
     this.apiEms.getDowloadFiles(this.username.value).subscribe(
       (response) => {
         this.userProducts = response;
@@ -48,10 +57,13 @@ export class EmsproductComponent implements OnInit {
         if(this.userProducts.length > 0)
                 this.isProducts = true;
 
-                if(this.searchTitle.value!='' || this.searchPartNumber.value !='' || this.frmLanguage.value !='' || this.frmPortfolio.value !=''  )
-                {
-                  this.userProducts = this.filterProductsData();  
-                }      
+                // if(this.searchTitle.value!='' || this.searchPartNumber.value !='' || this.frmLanguage.value !='' || this.frmPortfolio.value !=''  )
+                // {
+                //   this.userProducts = this.filterProductsData();  
+                // }      
+
+                //this.applymultplefilters(); 
+
       },
       (error) => {
         this.isProducts = false;
@@ -62,11 +74,54 @@ export class EmsproductComponent implements OnInit {
 
    filterProductsData() {
     return this.userProducts.filter(object => {
-      return object['title'].includes(this.searchPartNumber.value) 
+      return  object['title'].includes(this.searchPartNumber.value) 
       || object['description'] == this.searchTitle.value
       || object['language'] == this.frmLanguage.value
       || object['products'] == this.frmPortfolio.value;
     });
+  }
+
+  applymultplefilters()
+  {
+  
+    if(this.frmLanguage.value !='')
+        this.peopleFilter.language = this.frmLanguage.value;
+  if(this.searchPartNumber.value !='')
+    this.peopleFilter.title = this.frmLanguage.value;
+  
+  if(this.searchTitle.value!='')
+       this.peopleFilter.description = this.frmLanguage.value;
+
+  if(this.frmPortfolio.value!='')     
+      this.peopleFilter.products = this.frmPortfolio.value;
+
+
+  }
+
+  createfilter()
+  {
+    const myObject:any={};
+
+    if(this.frmPortfolio.value!='')   
+    {
+      myObject['products'] = this.frmLanguage.value;
+    }  
+    if(this.frmLanguage.value!='')   
+    {
+      myObject['language'] = this.frmLanguage.value;
+    }  
+
+    if(this.searchPartNumber.value!='')   
+    {
+      myObject['title'] = this.searchPartNumber.value;
+    }  
+    if(this.searchTitle.value!='')   
+    {
+      myObject['description'] = this.searchTitle.value;
+    }  
+
+    return myObject;
+
   }
 
   onTableDataChange(event: any) {

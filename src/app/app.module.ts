@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { EmsproductComponent } from './emsproduct/emsproduct.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FormsModule } from '@angular/forms';
+import { FilterPipe } from './myfliter.pipe';
 
 
 
@@ -14,13 +17,16 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [
     AppComponent,
     EmsapicallComponent,
-    EmsproductComponent
+    EmsproductComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

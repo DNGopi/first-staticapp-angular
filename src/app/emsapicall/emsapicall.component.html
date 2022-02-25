@@ -1,67 +1,20 @@
-<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+</div>
 
-<label for="name">Proc Id: </label>
-<input id="txtProcId" type="text" [formControl]="procId">
-<button type="submit">Search</button>
-
-</form>
-
-<br>
-
-<table class="table table-striped">
-    <thead>
+<table class="table">
+  <thead>
       <tr>
-        <th>ID</th>
-        <th>Location</th>
-        <th>Endpoint Url</th>
-        <th>Container</th>
-        <th>Account</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Address</th>
       </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let location of myLocations;">
-        <td>{{location.id}}</td>
-        <td>{{location.location}}</td>
-        <td>{{location.endPoint}}</td>
-        <td>{{location.container}}</td>
-        <td>{{location.account}}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="container-fluid">
-    <table class="table table-striped">
-    <thead>
-    <tr>
-    <th>Header 1</th>
-    <th>Header 2</th>
-    <th>Header 3</th>
-    </tr>
-    </thead>
-    <tfoot>
-    <tr>
-    <th>Footer 1</th>
-    <th>Footer 2</th>
-    <th>Footer 3</th>
-    </tr>
-    </tfoot>
-    <tbody>
-    <tr>
-    <td>Cell</td>
-    <td>Cell</td>
-    <td>Cell</td>
-    </tr>
-    <tr>
-    <td>Cell</td>
-    <td>Cell</td>
-    <td>Cell</td>
-    </tr>
-    <tr>
-    <td>Cell</td>
-    <td>Cell</td>
-    <td>Cell</td>
-    </tr>
-    </tbody>
-    </table>
-    
-    </div>
+  </thead>
+  <tbody>
+      <tr *ngFor="let item of people | filter_new: peopleFilter;">
+          <td>{{item.name}}</td>
+          <td>{{item.age}}</td>
+          <td>{{item.sex}}</td>
+      </tr>"
+  </tbody>
+</table>

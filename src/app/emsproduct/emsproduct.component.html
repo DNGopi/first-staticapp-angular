@@ -1,5 +1,9 @@
 <form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
 
+  <div class="form-group">
+    <input type="text" class="form-control" [formControl]="searchterm" placeholder="Search Here" [(ngModel)]="term">
+  </div>
+
   <div class="row">
     <div class="col-3">
       <label>Search Part Number:</label>
@@ -16,7 +20,7 @@
         Select Language:
       </label>
       <br>
-      <select [formControl]="frmLanguage" class="form-control">
+      <select [formControl]="frmLanguage" class="form-select">
         <option value="">Choose Language</option>
         <option *ngFor="let language of languages"  [value]="language">{{language}}</option>
     </select>
@@ -24,14 +28,14 @@
     <div class="col-2">
       <label> Select Product:</label>
       <br>
-      <select [formControl]="frmPortfolio" class="form-control">
+      <select [formControl]="frmPortfolio" class="form-select">
         <option value="">Choose Product</option>
         <option *ngFor="let prod of portfolios" [value]="prod">{{prod}}</option>
     </select>
     </div>
     <div class="col-2">     
       <br><br>
-      <button type="submit" class="btn-primary">Search</button>
+      <button type="submit" class="btn-primary">Clear Filter</button>
     </div>
   </div>
 
@@ -52,7 +56,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let product of userProducts | paginate
+            <tr *ngFor="let product of userProducts |filter:this.searchTitle.value | filter:this.searchPartNumber.value | filter:this.frmLanguage.value | filter:this.frmPortfolio.value | paginate 
             : {
                 itemsPerPage: tableSize,
                 currentPage: page,
