@@ -1,42 +1,28 @@
 <form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
-
-  <div class="form-group">
-    <input type="text" class="form-control" [formControl]="searchterm" placeholder="Search Here" [(ngModel)]="term">
-  </div>
-
+<br>
   <div class="row">
     <div class="col-3">
-      <label>Search Part Number:</label>
-      <br>
-      <input id="txtPartNumber" type="text" [formControl]="searchPartNumber" >
+        <input id="txtPartNumber" type="text" [formControl]="searchPartNumber" placeholder="Part Number" class="form-control" >
     </div>
     <div class="col-3">
-      <label>Search Title:</label>
-      <br>
-      <input id="txtTitle" type="text" [formControl]="searchTitle">
+     <input id="txtTitle" type="text" [formControl]="searchTitle" placeholder="Title" class="form-control">
     </div>
-    <div class="col-2">
-      <label>
-        Select Language:
-      </label>
-      <br>
-      <select [formControl]="frmLanguage" class="form-select">
+    <div class="col-3">
+       <select [formControl]="frmLanguage" class="form-select">
         <option value="">Choose Language</option>
         <option *ngFor="let language of languages"  [value]="language">{{language}}</option>
     </select>
     </div>
-    <div class="col-2">
-      <label> Select Product:</label>
-      <br>
-      <select [formControl]="frmPortfolio" class="form-select">
+    <div class="col-3">
+       <select [formControl]="frmPortfolio" class="form-select">
         <option value="">Choose Product</option>
         <option *ngFor="let prod of portfolios" [value]="prod">{{prod}}</option>
     </select>
     </div>
-    <div class="col-2">     
+    <!-- <div class="col-2">     
       <br><br>
       <button type="submit" class="btn-primary">Clear Filter</button>
-    </div>
+    </div> -->
   </div>
 
 <br>
