@@ -1,4 +1,5 @@
 <form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
+  
 <br>
   <div class="row">
     <div class="col-3">
@@ -38,7 +39,9 @@
               <th>Language </th>
               <th>Products</th>
             <!--  <th>File</th>  -->
-              <th>File</th>     
+              <!-- <th>File</th>    -->
+              <th></th>  
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -55,8 +58,18 @@
             <td>{{product.language}}</td>
             <td><div>{{product.products}}</div></td>
           <!--  <td>  <a href="#" (click)="download2(product.objectId,product.description)" class="btn btn-primary" >Download</a> </td>   -->    
-            <td><button (click)="download(product.objectId,product.description)" class="btn btn-primary" >Download</button></td>   
-            </tr>
+            <!-- <td><button (click)="download(product.objectId,product.description)" class="btn btn-primary" >Download</button></td>    -->
+          <td>
+            <button type="button" class="btn btn-primary btn-sm" (click)="openDoc('./assets/'+decodehtml(product.description)+'_'+decodehtml(product.title)+'.pdf', product.description)">
+              View
+          </button>
+          </td> 
+          <td>
+            <button type="button" class="btn btn-success btn-sm" (click)="downloadPdf('./assets/'+decodehtml(product.description)+'_'+decodehtml(product.title)+'.pdf', product.description)">
+              Download
+          </button>
+          </td>
+          </tr>
           </tbody>
         </table>
       
@@ -73,4 +86,5 @@
         </div>
       </div>
     </div>
+
   </form>

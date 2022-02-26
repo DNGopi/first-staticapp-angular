@@ -4,6 +4,7 @@ import { Product } from '../product';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FileService } from '../file.service';
 import { saveAs } from 'file-saver';
+import {htmlToText} from 'html-to-text'
 
 
 @Component({
@@ -13,6 +14,7 @@ import { saveAs } from 'file-saver';
 })
 export class EmsproductComponent implements OnInit {
 
+  
   productsForm = new FormGroup({})
   username = new FormControl('');
   frmLanguage = new FormControl('');
@@ -21,6 +23,7 @@ export class EmsproductComponent implements OnInit {
   searchTitle = new FormControl('');
     searchterm = new FormControl('');
     term : string ='';
+     
 
   peopleFilter: any;
     
@@ -31,7 +34,7 @@ export class EmsproductComponent implements OnInit {
   userProducts!: Product[] ;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 7;
+  tableSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
   isProducts :boolean = false;
   languages : any = ["English","German","Spanish","French (France)","French (Quebec)","Italian","Turkish","Polish","Portuguese (Brazil)","Portuguese (Portugal)","Simplified Chinese","Traditional Chinese","Indonesian"];
@@ -184,5 +187,27 @@ download(objectId: string, filename: string) {
        });
     }    
 
-    
+    downloadPdf(pdfUrl: string, pdfName: string ) {
+      //const pdfUrl = './assets/sample.pdf';
+      //const pdfName = 'your_pdf_file';
+      saveAs.saveAs(pdfUrl, pdfName);
+    }
+  
+    openDoc(pdfUrl: string, startPage: number ) {
+      window.open(pdfUrl + '#page=' + startPage, '_blank', '');
+    }
+
+    decodehtml(mystr: string){
+     var outstr: string = htmlToText(mystr);
+     outstr = this.replaceStr(outstr,' ','_');
+     outstr = this.replaceStr(outstr,'-','_');
+      return outstr;
+
+    }
+  replaceStr(str:string, find:string, replace:string) {
+      for (var i = 0; i < find.length; i++) {
+          str = str.replace(new RegExp(find[i], 'gi'), replace[i]);
+      }
+      return str;
+  }
 }

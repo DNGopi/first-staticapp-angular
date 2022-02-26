@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import {Locations} from './locations'
-import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -52,6 +51,8 @@ export class EmsapiserService {
        return this.http.get<string>(url,{headers : {'Ocp-Apim-Subscription-Key':'5fdadf41b7d3418f9b7970418f7e896a'}} );
 
       }
+
+      
      
       
 }
